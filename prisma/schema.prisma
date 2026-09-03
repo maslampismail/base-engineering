@@ -1,0 +1,139 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+model Admin {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  passwordHash String
+  name         String
+  role         String   @default("ADMIN")
+  createdAt    DateTime @default(now())
+}
+
+model Category {
+  id          String    @id @default(uuid())
+  name        String
+  slug        String    @unique
+  description String?
+  active      Boolean   @default(true)
+  sortOrder   Int       @default(0)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  products    Product[]
+}
+
+model Product {
+  id               String         @id @default(uuid())
+  name             String
+  slug             String         @unique
+  categoryId       String?
+  category         Category?      @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  shortDescription String
+  description      String
+  material         String?
+  specifications   String?        // Stored as formatted text or JSON string
+  applications     String?        // Comma-separated or line-separated applications
+  featured         Boolean        @default(false)
+  active           Boolean        @default(true)
+  sortOrder        Int            @default(0)
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
+  images           ProductImage[]
+  enquiries        Enquiry[]
+}
+
+model ProductImage {
+  id        String   @id @default(uuid())
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  url       String
+  objectKey String?
+  alt       String?
+  isPrimary Boolean  @default(false)
+  sortOrder Int      @default(0)
+  createdAt DateTime @default(now())
+}
+
+model Company {
+  id               String   @id @default("default")
+  name             String   @default("Base Engineering")
+  tagline          String   @default("Engineering Strength. Built to Perform.")
+  aboutHeading     String   @default("Built on Engineering. Driven by Reliability.")
+  aboutDescription String
+  aboutImage       String?
+  phone            String   @default("+91 98765 43210")
+  email            String   @default("info@baseengineering.com")
+  address          String   @default("Plot No. 42, Heavy Industrial Estate, Engineering Corridor")
+  website          String?  @default("https://baseengineering.com")
+  socialLinks      String?  // JSON string: { "linkedin": "...", "twitter": "..." }
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model CompanyHighlight {
+  id          String   @id @default(uuid())
+  title       String   // e.g. "Years Experience"
+  value       String   // e.g. "10+"
+  description String?
+  icon        String?  // icon identifier
+  sortOrder   Int      @default(0)
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+}
+
+model HomepageSection {
+  id               String   @id @default(uuid())
+  sectionKey       String   @unique // e.g. "hero", "about", "why-us", "applications"
+  heading          String
+  subheading       String?
+  description      String?
+  primaryCtaText   String?
+  primaryCtaLink   String?
+  secondaryCtaText String?
+  secondaryCtaLink String?
+  imageUrl         String?
+  active           Boolean  @default(true)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model Application {
+  id          String   @id @default(uuid())
+  title       String
+  description String
+  imageUrl    String?
+  sortOrder   Int      @default(0)
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+}
+
+model Enquiry {
+  id        String   @id @default(uuid())
+  name      String
+  company   String?
+  phone     String
+  email     String
+  productId String?
+  product   Product? @relation(fields: [productId], references: [id], onDelete: SetNull)
+  message   String
+  status    String   @default("NEW") // "NEW", "CONTACTED", "CLOSED"
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Media {
+  id        String   @id @default(uuid())
+  fileName  String
+  fileKey   String   @unique
+  url       String
+  mimeType  String?
+  size      Int?
+  createdAt DateTime @default(now())
+}
