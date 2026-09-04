@@ -1,14 +1,11 @@
 'use client';
 
 import { ArrowRight, FileText, CheckCircle2 } from 'lucide-react';
+import { scrollToSection } from '@/lib/utils';
 
 export default function Hero({ section }) {
   const scrollTo = (id) => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-      window.history.pushState(null, '', `/#${id}`);
-    }
+    scrollToSection(id);
   };
 
   const heading = section?.heading || 'Reliable Engineering Solutions for Modern Construction';

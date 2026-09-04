@@ -61,11 +61,16 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: var(--header-height);
   font-size: 16px;
   background-color: var(--bg-main);
   color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+section[id] {
+  scroll-margin-top: var(--header-height);
 }
 
 body {
@@ -360,10 +365,15 @@ p {
 /* Hero Section */
 .hero-section {
   position: relative;
+  min-height: calc(100vh - var(--header-height));
+  min-height: calc(100dvh - var(--header-height));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   background: linear-gradient(to right, rgba(15, 23, 42, 0.94) 0%, rgba(15, 23, 42, 0.85) 60%, rgba(15, 23, 42, 0.65) 100%),
               url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1800&q=80') center/cover no-repeat;
   color: #FFFFFF;
-  padding: 100px 0 120px 0;
+  padding: clamp(2.5rem, 5vh, 5rem) 0;
   border-bottom: 4px solid var(--accent-primary);
 }
 
@@ -384,23 +394,23 @@ p {
   letter-spacing: 0.1em;
   padding: 6px 14px;
   border-radius: var(--radius-xs);
-  margin-bottom: 20px;
+  margin-bottom: clamp(14px, 2.5vh, 20px);
 }
 
 .hero-title {
   color: #FFFFFF;
-  font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+  font-size: clamp(2rem, 4.5vw, 3.4rem);
   font-weight: 800;
   line-height: 1.15;
   letter-spacing: -0.02em;
-  margin-bottom: 20px;
+  margin-bottom: clamp(14px, 2.5vh, 20px);
 }
 
 .hero-description {
   color: #E2E8F0;
-  font-size: 1.15rem;
+  font-size: clamp(1rem, 1.8vw, 1.15rem);
   line-height: 1.65;
-  margin-bottom: 36px;
+  margin-bottom: clamp(24px, 4vh, 36px);
   max-width: 680px;
 }
 
@@ -409,6 +419,24 @@ p {
   flex-wrap: wrap;
   align-items: center;
   gap: 16px;
+}
+
+@media (max-height: 600px) {
+  .hero-section {
+    padding: 1.5rem 0;
+  }
+  .hero-badge {
+    margin-bottom: 10px;
+  }
+  .hero-title {
+    font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+    margin-bottom: 10px;
+  }
+  .hero-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 18px;
+  }
 }
 
 /* About Section */

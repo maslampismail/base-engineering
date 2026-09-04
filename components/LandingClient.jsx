@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Header from './Header';
 import Hero from './Hero';
 import About from './About';
@@ -10,6 +10,7 @@ import Applications from './Applications';
 import Highlights from './Highlights';
 import EnquirySection from './EnquirySection';
 import Footer from './Footer';
+import { scrollToSection } from '@/lib/utils';
 
 export default function LandingClient({
   company,
@@ -21,13 +22,16 @@ export default function LandingClient({
 }) {
   const [selectedProductId, setSelectedProductId] = useState('');
 
+  useEffect(() => {
+    if (window.location.hash) {
+      const targetId = window.location.hash.replace('#', '');
+      scrollToSection(targetId);
+    }
+  }, []);
+
   const handleSelectProductForEnquiry = (productId) => {
     setSelectedProductId(productId);
-    const contactElement = document.getElementById('contact');
-    if (contactElement) {
-      contactElement.scrollIntoView({ behavior: 'smooth' });
-      window.history.pushState(null, '', '/#contact');
-    }
+    scrollToSection('contact');
   };
 
   return (

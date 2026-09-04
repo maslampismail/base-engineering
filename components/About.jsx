@@ -1,14 +1,11 @@
 'use client';
 
 import { Shield, Wrench, CheckCircle, Clock, ArrowRight } from 'lucide-react';
+import { scrollToSection } from '@/lib/utils';
 
 export default function About({ company }) {
   const scrollTo = (id) => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-      window.history.pushState(null, '', `/#${id}`);
-    }
+    scrollToSection(id);
   };
 
   const aboutHeading = company?.aboutHeading || 'Built on Engineering. Driven by Reliability.';

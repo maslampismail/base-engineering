@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Menu, X, ArrowRight, ShieldCheck } from 'lucide-react';
+import { scrollToSection } from '@/lib/utils';
 
 export default function Header({ company }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -32,8 +33,7 @@ export default function Header({ company }) {
       const element = document.getElementById(targetId);
       if (element) {
         e.preventDefault();
-        element.scrollIntoView({ behavior: 'smooth' });
-        window.history.pushState(null, '', `/#${targetId}`);
+        scrollToSection(targetId);
       }
     }
   };
@@ -48,7 +48,7 @@ export default function Header({ company }) {
     >
       <div className="container">
         <div className="header-inner">
-          <Link href="/#hero" className="brand-logo" onClick={(e) => handleNavClick(e, '/#hero')}>
+          <Link href="/" className="brand-logo" onClick={(e) => handleNavClick(e, '/#hero')}>
             <div className="brand-name">
               <ShieldCheck size={26} color="var(--accent-primary)" strokeWidth={2.4} />
               <span>BASE</span> ENGINEERING

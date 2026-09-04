@@ -2,15 +2,12 @@
 
 import Link from 'next/link';
 import { Phone, Mail, MapPin, ShieldCheck, Lock } from 'lucide-react';
+import { scrollToSection } from '@/lib/utils';
 
 export default function Footer({ company }) {
   const handleNavClick = (e, targetId) => {
-    const element = document.getElementById(targetId);
-    if (element) {
-      e.preventDefault();
-      element.scrollIntoView({ behavior: 'smooth' });
-      window.history.pushState(null, '', `/#${targetId}`);
-    }
+    e.preventDefault();
+    scrollToSection(targetId);
   };
 
   return (
