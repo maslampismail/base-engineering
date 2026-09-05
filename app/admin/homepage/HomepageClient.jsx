@@ -26,8 +26,11 @@ export default function HomepageClient({ initialHero }) {
   };
 
   const handleImageUploaded = (images) => {
-    if (images.length > 0) {
-      setFormData((prev) => ({ ...prev, imageUrl: images[images.length - 1].url }));
+    if (images && images.length > 0) {
+      const primary = images.find((img) => img.isPrimary) || images[images.length - 1];
+      setFormData((prev) => ({ ...prev, imageUrl: primary?.url || '' }));
+    } else {
+      setFormData((prev) => ({ ...prev, imageUrl: '' }));
     }
   };
 

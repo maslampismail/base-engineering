@@ -370,8 +370,10 @@ p {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: linear-gradient(to right, rgba(15, 23, 42, 0.94) 0%, rgba(15, 23, 42, 0.85) 60%, rgba(15, 23, 42, 0.65) 100%),
-              url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1800&q=80') center/cover no-repeat;
+  background-color: #0B0F17;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   color: #FFFFFF;
   padding: clamp(2rem, 3.8vh, 3.8rem) 0;
   border-bottom: 4px solid var(--accent-primary);

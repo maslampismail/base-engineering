@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
 import { getAdminSession } from '@/lib/auth';
+import { revalidatePath } from 'next/cache';
 
 export const dynamic = 'force-dynamic';
 
@@ -53,6 +54,9 @@ export async function PUT(request) {
         active: active !== undefined ? Boolean(active) : true,
       },
     });
+
+    revalidatePath('/');
+    revalidatePath('/admin/homepage');
 
     return NextResponse.json({ success: true, section });
   } catch (error) {

@@ -4,6 +4,7 @@ import { redirect } from 'next/navigation';
 import HomepageClient from './HomepageClient';
 
 export const revalidate = 0;
+export const dynamic = 'force-dynamic';
 
 export default async function AdminHomepagePage() {
   const session = await getAdminSession();

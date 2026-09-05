@@ -2,6 +2,7 @@ import prisma from '@/lib/prisma';
 import LandingClient from '@/components/LandingClient';
 
 export const revalidate = 0; // Always serve fresh data
+export const dynamic = 'force-dynamic';
 
 export default async function HomePage() {
   const [

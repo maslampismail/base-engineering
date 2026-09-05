@@ -45,8 +45,30 @@ export default function Hero({ section, highlights }) {
   const repeatCount = Math.max(1, Math.ceil(6 / baseStats.length));
   const cycleItems = Array(repeatCount).fill(baseStats).flat();
 
+  const defaultHeroImage = 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1800&q=80';
+  const heroImage = section?.imageUrl ? section.imageUrl.trim() : defaultHeroImage;
+
+  const primaryCtaText = section?.primaryCtaText || 'View Products';
+  const primaryCtaLink = section?.primaryCtaLink || '#products';
+  const secondaryCtaText = section?.secondaryCtaText || 'Get Enquiry';
+  const secondaryCtaLink = section?.secondaryCtaLink || '#contact';
+
+  const handleCtaClick = (link) => {
+    if (link?.startsWith('#')) {
+      scrollTo(link.replace('#', ''));
+    } else if (link) {
+      window.location.href = link;
+    }
+  };
+
   return (
-    <section id="hero" className="hero-section">
+    <section
+      id="hero"
+      className="hero-section"
+      style={{
+        backgroundImage: `linear-gradient(to right, rgba(15, 23, 42, 0.94) 0%, rgba(15, 23, 42, 0.85) 60%, rgba(15, 23, 42, 0.65) 100%), url("${encodeURI(heroImage)}")`,
+      }}
+    >
       <div className="container">
         <div className="hero-content">
           <div className="hero-badge">
@@ -60,17 +82,17 @@ export default function Hero({ section, highlights }) {
 
           <div className="hero-ctas">
             <button
-              onClick={() => scrollTo('products')}
+              onClick={() => handleCtaClick(primaryCtaLink)}
               className="btn btn-primary btn-lg"
             >
-              View Products <ArrowRight size={18} />
+              {primaryCtaText} <ArrowRight size={18} />
             </button>
 
             <button
-              onClick={() => scrollTo('contact')}
+              onClick={() => handleCtaClick(secondaryCtaLink)}
               className="btn btn-outline-white btn-lg"
             >
-              <FileText size={18} /> Get Enquiry
+              <FileText size={18} /> {secondaryCtaText}
             </button>
           </div>
         </div>
