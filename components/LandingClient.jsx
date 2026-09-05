@@ -38,7 +38,7 @@ export default function LandingClient({
     <>
       <Header company={company} />
       <main>
-        <Hero section={heroSection} highlights={highlights} />
+        <Hero section={heroSection} />
         <About company={company} />
         <Products
           products={products}
