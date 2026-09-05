@@ -90,7 +90,7 @@ export default function EnquiriesClient({ initialEnquiries }) {
                   <th>Date</th>
                   <th>Status</th>
                   <th>Message Preview</th>
-                  <th style={{ textAlign: 'right' }}>Actions</th>
+                  <th style={{ textAlign: 'right', whiteSpace: 'nowrap' }}>Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -119,41 +119,48 @@ export default function EnquiriesClient({ initialEnquiries }) {
                     </td>
                     <td style={{ fontSize: '0.82rem' }}>{formatDateTime(item.createdAt)}</td>
                     <td>
-                      <span className={`badge-status ${item.status.toLowerCase()}`}>
-                        {item.status}
-                      </span>
+                      <select
+                        value={item.status}
+                        disabled={updatingId === item.id}
+                        onChange={(e) => handleStatusChange(item.id, e.target.value)}
+                        className={`badge-status ${item.status.toLowerCase()}`}
+                        style={{
+                          cursor: 'pointer',
+                          border: 'none',
+                          outline: 'none',
+                          fontWeight: 700,
+                          fontSize: '0.74rem',
+                          padding: '3px 8px',
+                          borderRadius: 'var(--radius-xs)',
+                        }}
+                        title="Click to change status"
+                      >
+                        <option value="NEW">NEW</option>
+                        <option value="CONTACTED">CONTACTED</option>
+                        <option value="CLOSED">CLOSED</option>
+                      </select>
                     </td>
                     <td style={{ maxWidth: '240px' }}>
                       <div style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', fontSize: '0.88rem', color: '#475569' }}>
                         {item.message}
                       </div>
                     </td>
-                    <td style={{ textAlign: 'right' }}>
-                      <div className="action-btn-group" style={{ justifyContent: 'flex-end' }}>
+                    <td style={{ textAlign: 'right', whiteSpace: 'nowrap' }}>
+                      <div className="action-btn-group" style={{ justifyContent: 'flex-end', gap: '6px' }}>
                         <button
                           onClick={() => setActiveModalEnquiry(item)}
                           className="action-btn"
                           title="View Details"
+                          style={{ padding: '5px 8px', fontSize: '0.8rem' }}
                         >
                           <Eye size={13} /> View
                         </button>
-
-                        <select
-                          value={item.status}
-                          disabled={updatingId === item.id}
-                          onChange={(e) => handleStatusChange(item.id, e.target.value)}
-                          className="admin-form-select"
-                          style={{ padding: '4px 8px', fontSize: '0.78rem', width: 'auto' }}
-                        >
-                          <option value="NEW">New</option>
-                          <option value="CONTACTED">Contacted</option>
-                          <option value="CLOSED">Closed</option>
-                        </select>
 
                         <button
                           onClick={() => handleDelete(item.id)}
                           className="action-btn action-btn-danger"
                           title="Delete enquiry"
+                          style={{ padding: '5px 8px' }}
                         >
                           <Trash2 size={13} />
                         </button>

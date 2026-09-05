@@ -1359,3 +1359,22 @@ p {
   background-color: #DCFCE7;
   color: #15803D;
 }
+
+select.badge-status {
+  border: 1px solid transparent;
+  cursor: pointer;
+  outline: none;
+  font-family: inherit;
+  transition: border-color var(--transition-fast);
+}
+
+select.badge-status:hover,
+select.badge-status:focus {
+  border-color: currentColor;
+}
+
+select.badge-status option {
+  background-color: #FFFFFF;
+  color: #0F172A;
+  font-weight: 600;
+}
