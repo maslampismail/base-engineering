@@ -1,19 +1,19 @@
 # Dependencies
-/node_modules
+node_modules/
 /.pnp
 .pnp.js
 .yarn/install-state.gz
 
 # Next.js build outputs
-/.next/
-/out/
-/build
+.next/
+out/
+dist/
+build/
 
 # Local environment & secrets (DO NOT COMMIT)
 .env
-.env*.local
-.env.production
-.env.development
+.env.*
+!.env.example
 *.pem
 
 # SQLite databases & journals
@@ -28,17 +28,21 @@
 /public/uploads/*
 !/public/uploads/.gitkeep
 
-# Cloudflare Wrangler cache
-.wrangler
+# Cloudflare Wrangler cache & local dev vars
+.wrangler/
+.dev.vars
 
 # Debug logs
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# System files
+# System & Cache files
 .DS_Store
+Thumbs.db
+.cache/
 *.tsbuildinfo
 next-env.d.ts
-/coverage
+coverage/
 .vercel

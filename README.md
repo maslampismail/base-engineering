@@ -63,7 +63,9 @@ node prisma/seed.js
 ```bash
 npm run dev
 ```
-Open [http://localhost:3000](http://localhost:3000) to view the public website.
+- **Local Machine:** [http://localhost:3000](http://localhost:3000)
+- **Wi-Fi / Other Devices:** `http://<your-local-ip>:3000` (e.g. `http://192.168.29.130:3000`)
+*(The dev server is configured with `-H 0.0.0.0` to automatically accept incoming connections from any device on the same local network)*
 
 ---
 
