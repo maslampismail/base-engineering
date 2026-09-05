@@ -82,8 +82,10 @@ export default function Hero({ section, highlights }) {
             <div className="hero-stats-group">
               {cycleItems.map((stat, idx) => (
                 <div key={`hero-stat-g1-${stat.id || idx}-${idx}`} className="hero-stat-item">
-                  <div className="hero-stat-number">{stat.value}</div>
-                  <div className="hero-stat-label">{stat.title}</div>
+                  <div className="hero-stat-header">
+                    <span className="hero-stat-number">{stat.value}</span>
+                    <span className="hero-stat-label">{stat.title}</span>
+                  </div>
                   {stat.description && (
                     <p className="hero-stat-desc" title={stat.description}>
                       {stat.description}
@@ -97,8 +99,10 @@ export default function Hero({ section, highlights }) {
             <div className="hero-stats-group" aria-hidden="true">
               {cycleItems.map((stat, idx) => (
                 <div key={`hero-stat-g2-${stat.id || idx}-${idx}`} className="hero-stat-item">
-                  <div className="hero-stat-number">{stat.value}</div>
-                  <div className="hero-stat-label">{stat.title}</div>
+                  <div className="hero-stat-header">
+                    <span className="hero-stat-number">{stat.value}</span>
+                    <span className="hero-stat-label">{stat.title}</span>
+                  </div>
                   {stat.description && (
                     <p className="hero-stat-desc" title={stat.description}>
                       {stat.description}
