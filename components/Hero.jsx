@@ -38,6 +38,8 @@ export default function Hero({ section, highlights }) {
   ];
 
   const stats = highlights && highlights.length >= 4 ? highlights.slice(0, 4) : defaultStats;
+  // Duplicate stats array to enable an infinitely continuous marquee loop
+  const marqueeStats = [...stats, ...stats, ...stats, ...stats];
 
   return (
     <section id="hero" className="hero-section">
@@ -69,15 +71,17 @@ export default function Hero({ section, highlights }) {
           </div>
         </div>
 
-        {/* Professional Statistics / Trust Strip */}
-        <div className="hero-stats-strip">
-          {stats.map((stat, idx) => (
-            <div key={stat.id || idx} className="hero-stat-item">
-              <div className="hero-stat-number">{stat.value}</div>
-              <div className="hero-stat-label">{stat.title}</div>
-              <p className="hero-stat-desc">{stat.description}</p>
-            </div>
-          ))}
+        {/* Professional Statistics / Continuous Marquee Strip */}
+        <div className="hero-stats-strip" aria-label="Company Statistics">
+          <div className="hero-stats-track">
+            {marqueeStats.map((stat, idx) => (
+              <div key={`${stat.id || stat.title}-${idx}`} className="hero-stat-item">
+                <div className="hero-stat-number">{stat.value}</div>
+                <div className="hero-stat-label">{stat.title}</div>
+                <p className="hero-stat-desc">{stat.description}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
