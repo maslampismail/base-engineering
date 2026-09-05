@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import prisma from '@/lib/prisma';
 import { getAdminSession } from '@/lib/auth';
 
@@ -41,9 +42,13 @@ export async function POST(request) {
       },
     });
 
+    revalidatePath('/');
+    revalidatePath('/admin/highlights');
+
     return NextResponse.json({ success: true, highlight }, { status: 201 });
   } catch (error) {
     console.error('Error creating highlight:', error);
     return NextResponse.json({ error: 'Failed to create highlight' }, { status: 500 });
   }
 }
+

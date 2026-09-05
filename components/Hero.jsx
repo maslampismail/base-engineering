@@ -37,9 +37,13 @@ export default function Hero({ section, highlights }) {
     },
   ];
 
-  const stats = highlights && highlights.length >= 4 ? highlights.slice(0, 4) : defaultStats;
-  // Duplicate stats array to enable an infinitely continuous marquee loop
-  const marqueeStats = [...stats, ...stats, ...stats, ...stats];
+  // Fully dynamic: use all active company highlights from admin / DB
+  const baseStats = highlights && highlights.length > 0 ? highlights : defaultStats;
+
+  // Repeat items within each cycle if there are few items (e.g. 1, 2, or 3)
+  // so a single cycle seamlessly spans wide viewports (at least 6 items per cycle)
+  const repeatCount = Math.max(1, Math.ceil(6 / baseStats.length));
+  const cycleItems = Array(repeatCount).fill(baseStats).flat();
 
   return (
     <section id="hero" className="hero-section">
@@ -71,16 +75,38 @@ export default function Hero({ section, highlights }) {
           </div>
         </div>
 
-        {/* Professional Statistics / Continuous Marquee Strip */}
-        <div className="hero-stats-strip" aria-label="Company Statistics">
+        {/* Dynamic Continuous Horizontal Slider / Marquee (Left-to-Right) */}
+        <div className="hero-stats-strip" aria-label="Company Key Highlights">
           <div className="hero-stats-track">
-            {marqueeStats.map((stat, idx) => (
-              <div key={`${stat.id || stat.title}-${idx}`} className="hero-stat-item">
-                <div className="hero-stat-number">{stat.value}</div>
-                <div className="hero-stat-label">{stat.title}</div>
-                <p className="hero-stat-desc">{stat.description}</p>
-              </div>
-            ))}
+            {/* Primary Cycle */}
+            <div className="hero-stats-group">
+              {cycleItems.map((stat, idx) => (
+                <div key={`hero-stat-g1-${stat.id || idx}-${idx}`} className="hero-stat-item">
+                  <div className="hero-stat-number">{stat.value}</div>
+                  <div className="hero-stat-label">{stat.title}</div>
+                  {stat.description && (
+                    <p className="hero-stat-desc" title={stat.description}>
+                      {stat.description}
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            {/* Duplicate Cycle for Seamless Infinite Loop */}
+            <div className="hero-stats-group" aria-hidden="true">
+              {cycleItems.map((stat, idx) => (
+                <div key={`hero-stat-g2-${stat.id || idx}-${idx}`} className="hero-stat-item">
+                  <div className="hero-stat-number">{stat.value}</div>
+                  <div className="hero-stat-label">{stat.title}</div>
+                  {stat.description && (
+                    <p className="hero-stat-desc" title={stat.description}>
+                      {stat.description}
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

@@ -65,10 +65,10 @@ export default function HighlightsClient({ initialHighlights }) {
 
       if (editingId) {
         setHighlights((prev) =>
-          prev.map((h) => (h.id === editingId ? data.highlight : h))
+          prev.map((h) => (h.id === editingId ? data.highlight : h)).sort((a, b) => (a.sortOrder || 0) - (b.sortOrder || 0))
         );
       } else {
-        setHighlights((prev) => [...prev, data.highlight]);
+        setHighlights((prev) => [...prev, data.highlight].sort((a, b) => (a.sortOrder || 0) - (b.sortOrder || 0)));
       }
       cancelForm();
     } catch (err) {

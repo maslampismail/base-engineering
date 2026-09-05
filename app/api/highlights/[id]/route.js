@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import prisma from '@/lib/prisma';
 import { getAdminSession } from '@/lib/auth';
 
@@ -24,6 +25,9 @@ export async function PUT(request, { params }) {
       },
     });
 
+    revalidatePath('/');
+    revalidatePath('/admin/highlights');
+
     return NextResponse.json({ success: true, highlight: updated });
   } catch (error) {
     console.error('Error updating highlight:', error);
@@ -40,9 +44,14 @@ export async function DELETE(request, { params }) {
 
     const { id } = params;
     await prisma.companyHighlight.delete({ where: { id } });
+
+    revalidatePath('/');
+    revalidatePath('/admin/highlights');
+
     return NextResponse.json({ success: true, message: 'Highlight deleted' });
   } catch (error) {
     console.error('Error deleting highlight:', error);
     return NextResponse.json({ error: 'Failed to delete highlight' }, { status: 500 });
   }
 }
+
