@@ -432,9 +432,9 @@ p {
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.35);
   position: relative;
   width: 100%;
-  height: 94px;
-  min-height: 94px;
-  max-height: 94px;
+  height: 104px;
+  min-height: 104px;
+  max-height: 104px;
   overflow: hidden; /* Prevents any horizontal page scroll */
   display: flex;
   align-items: center;
@@ -448,19 +448,19 @@ p {
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 40px;
+  width: 44px;
   z-index: 2;
   pointer-events: none;
 }
 
 .hero-stats-strip::before {
   left: 0;
-  background: linear-gradient(to right, rgba(15, 23, 42, 0.85), transparent);
+  background: linear-gradient(to right, rgba(15, 23, 42, 0.9), transparent);
 }
 
 .hero-stats-strip::after {
   right: 0;
-  background: linear-gradient(to left, rgba(15, 23, 42, 0.85), transparent);
+  background: linear-gradient(to left, rgba(15, 23, 42, 0.9), transparent);
 }
 
 /* Moving Track */
@@ -496,18 +496,24 @@ p {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-width: 210px;
-  max-width: 270px;
-  padding: 0 24px;
+  min-width: 270px;
+  max-width: 320px;
+  padding: 6px 24px;
   flex-shrink: 0;
+  transition: background-color 0.2s ease;
+  border-radius: var(--radius-sm);
+}
+
+.hero-stat-item:hover {
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .hero-stat-item::after {
   content: '';
   position: absolute;
   right: 0;
-  top: 15%;
-  height: 70%;
+  top: 12%;
+  height: 76%;
   width: 1px;
   background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.18), transparent);
 }
@@ -523,38 +529,40 @@ p {
 }
 
 .hero-stat-label {
-  font-size: clamp(0.82rem, 0.95vw, 0.88rem);
+  font-size: clamp(0.84rem, 0.95vw, 0.9rem);
   font-weight: 700;
   color: #FFFFFF;
   letter-spacing: 0.01em;
   line-height: 1.2;
-  margin-bottom: 2px;
+  margin-bottom: 3px;
   white-space: nowrap;
 }
 
 .hero-stat-desc {
-  font-size: clamp(0.7rem, 0.8vw, 0.75rem);
-  color: #94A3B8;
-  line-height: 1.3;
+  font-size: clamp(0.74rem, 0.85vw, 0.8rem);
+  color: #CBD5E1;
+  line-height: 1.38;
   margin: 0;
-  white-space: nowrap;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 220px;
+  max-width: 270px;
+  letter-spacing: 0.01em;
 }
 
 @media (max-width: 960px) {
   .hero-stats-strip {
-    height: 88px;
-    min-height: 88px;
-    max-height: 88px;
+    height: 98px;
+    min-height: 98px;
+    max-height: 98px;
     margin-top: 20px;
   }
 
   .hero-stat-item {
-    min-width: 190px;
-    max-width: 240px;
-    padding: 0 18px;
+    min-width: 240px;
+    max-width: 280px;
+    padding: 4px 18px;
   }
 
   .hero-stat-number {
@@ -566,38 +574,40 @@ p {
   }
 
   .hero-stat-desc {
-    font-size: 0.7rem;
-    max-width: 190px;
+    font-size: 0.74rem;
+    line-height: 1.34;
+    max-width: 240px;
   }
 }
 
 @media (max-width: 520px) {
   .hero-stats-strip {
-    height: 80px;
-    min-height: 80px;
-    max-height: 80px;
+    height: 88px;
+    min-height: 88px;
+    max-height: 88px;
     margin-top: 18px;
   }
 
   .hero-stat-item {
-    min-width: 165px;
-    max-width: 205px;
-    padding: 0 14px;
+    min-width: 210px;
+    max-width: 250px;
+    padding: 3px 14px;
   }
 
   .hero-stat-number {
-    font-size: 1.25rem;
+    font-size: 1.3rem;
     margin-bottom: 1px;
   }
 
   .hero-stat-label {
-    font-size: 0.78rem;
+    font-size: 0.8rem;
     margin-bottom: 1px;
   }
 
   .hero-stat-desc {
-    font-size: 0.66rem;
-    max-width: 165px;
+    font-size: 0.7rem;
+    line-height: 1.3;
+    max-width: 210px;
   }
 }
 
@@ -606,25 +616,26 @@ p {
     padding: 1.5rem 0;
   }
   .hero-stats-strip {
-    height: 76px;
-    min-height: 76px;
-    max-height: 76px;
+    height: 84px;
+    min-height: 84px;
+    max-height: 84px;
     margin-top: 14px;
   }
   .hero-stat-item {
-    min-width: 160px;
-    padding: 0 12px;
+    min-width: 190px;
+    padding: 2px 12px;
   }
   .hero-stat-number {
-    font-size: 1.22rem;
+    font-size: 1.25rem;
     margin-bottom: 1px;
   }
   .hero-stat-label {
-    font-size: 0.75rem;
+    font-size: 0.78rem;
     margin-bottom: 1px;
   }
   .hero-stat-desc {
-    font-size: 0.64rem;
+    font-size: 0.68rem;
+    line-height: 1.25;
   }
   .hero-badge {
     margin-bottom: 8px;
