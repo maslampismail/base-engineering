@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -H 0.0.0.0",
+    "dev": "node -e 'const ip = Object.values(require(\"os\").networkInterfaces()).flat().find(i => i.family === \"IPv4\" && !i.internal)?.address; console.log(\"\\n\\x1b[32m✔ Local Network URL:\\x1b[0m \\x1b[36mhttp://\" + (ip || \"localhost\") + \":3000\\x1b[0m\\n\");' && next dev -H 0.0.0.0",
     "build": "next build",
     "start": "next start -H 0.0.0.0",
     "lint": "next lint"
