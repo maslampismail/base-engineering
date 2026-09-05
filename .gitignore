@@ -23,6 +23,9 @@ build/
 *.sqlite-journal
 /prisma/*.db
 /prisma/*.db-journal
+/prisma/backups/
+/prisma/data_dump_for_d1.sql
+/prisma/schema.sql
 
 # Local uploads folder (keep directory structure with .gitkeep)
 /public/uploads/*

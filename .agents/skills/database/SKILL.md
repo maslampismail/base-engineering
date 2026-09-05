@@ -12,7 +12,7 @@ Manage Base Engineering data using Prisma v5 with driverAdapters support.
 ```text
 Local Development                      Production
        ↓                                    ↓
-SQLite (prisma/dev.db)            Cloudflare D1 (valencia_db)
+SQLite (prisma/dev.db)            Cloudflare D1 (base_db)
        ↓                                    ↓
 PrismaClient (standard)            PrismaClient + PrismaD1 adapter
        └───────────────────┬────────────────┘
@@ -21,7 +21,7 @@ PrismaClient (standard)            PrismaClient + PrismaD1 adapter
 ```
 
 - **Local:** SQLite database located at `prisma/dev.db`.
-- **Production:** Cloudflare D1 with binding `valencia_db` configured in `wrangler.toml`.
+- **Production:** Cloudflare D1 with binding `base_db` configured in `wrangler.toml`.
 - **Adapter:** `@prisma/adapter-d1`.
 - **Preview Features:** `previewFeatures = ["driverAdapters"]` in `prisma/schema.prisma`.
 

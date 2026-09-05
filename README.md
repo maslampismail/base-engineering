@@ -31,7 +31,7 @@ Production-ready, high-performance web platform for **Base Engineering**, an ind
 - **Database & ORM:**
   - **Prisma v5** with `previewFeatures = ["driverAdapters"]`
   - **Local Development:** SQLite (`prisma/dev.db`)
-  - **Production Deployment:** Cloudflare D1 database (`valencia_db` binding) via `@prisma/adapter-d1`
+  - **Production Deployment:** Cloudflare D1 database (`base_db` binding) via `@prisma/adapter-d1`
 - **Object Storage:**
   - Cloudflare R2 bucket (`base-engineering-assets`) via `@aws-sdk/client-s3`
   - Automatic local filesystem fallback (`/public/uploads`) for zero-config offline development
@@ -87,8 +87,8 @@ compatibility_date = "2024-09-23"
 compatibility_flags = ["nodejs_compat"]
 
 [[d1_databases]]
-binding = "valencia_db"
-database_name = "valencia_db"
+binding = "base_db"
+database_name = "base_db"
 database_id = "<your-d1-database-id>"
 
 [[r2_buckets]]

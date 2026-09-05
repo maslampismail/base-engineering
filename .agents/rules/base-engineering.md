@@ -97,7 +97,7 @@ Explicitly Prohibited unless requested:
 - **Database ORM:** Prisma v5 with `previewFeatures = ["driverAdapters"]`
 - **Database Engines:**
   - Local Dev: SQLite (`prisma/dev.db`)
-  - Production: Cloudflare D1 (`valencia_db` binding via `@prisma/adapter-d1`)
+  - Production: Cloudflare D1 (`base_db` binding via `@prisma/adapter-d1`)
 - **Storage:** Cloudflare R2 (`@aws-sdk/client-s3`) with local `/public/uploads` fallback
 - **Cloudflare Runtime:** Cloudflare Pages / Workers via `wrangler.toml`
 
@@ -108,7 +108,7 @@ Explicitly Prohibited unless requested:
 ```text
 Local Development                      Production
        ↓                                    ↓
-SQLite (prisma/dev.db)            Cloudflare D1 (valencia_db)
+SQLite (prisma/dev.db)            Cloudflare D1 (base_db)
        ↓                                    ↓
 PrismaClient (standard)            PrismaClient + PrismaD1 adapter
        └───────────────────┬────────────────┘

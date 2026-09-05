@@ -16,12 +16,12 @@ Deploy and operate Base Engineering on Cloudflare's serverless infrastructure.
 
 ## Cloudflare D1 Database
 
-- Production D1 database binding: `valencia_db`
+- Production D1 database binding: `base_db`
 - Defined in `wrangler.toml`:
   ```toml
   [[d1_databases]]
-  binding = "valencia_db"
-  database_name = "valencia_db"
+  binding = "base_db"
+  database_name = "base_db"
   database_id = "<your-d1-database-id>"
   ```
 - Connection handled automatically via `lib/prisma.js` and `@prisma/adapter-d1`.

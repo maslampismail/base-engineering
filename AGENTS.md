@@ -16,6 +16,6 @@ All AI agents and developers working on the **Base Engineering** codebase must f
 ## Core Summary
 1. **Brand Identity:** Established industrial manufacturer (scaffolding jacks, spans, shutters, props, accessories) — NOT a SaaS, tech agency, or consumer shop.
 2. **Routing:** Strict single-page landing site on `/` with anchor links (`/#about`, `/#products`, `/#contact`); individual product detail pages at `/products/[slug]`.
-3. **Database:** Prisma v5 with `driverAdapters` — local SQLite (`prisma/dev.db`), production Cloudflare D1 (`valencia_db`).
+3. **Database:** Prisma v5 with `driverAdapters` — local SQLite (`prisma/dev.db`), production Cloudflare D1 (`base_db`).
 4. **Media:** Cloudflare R2 via `@aws-sdk/client-s3` with local `/public/uploads` fallback.
 5. **Anti-Overbuilding:** Do not add blogs, careers, pricing tiers, carts, or AI bots unless explicitly requested.

@@ -5,9 +5,10 @@ pages_build_output_dir = ".vercel/output/static"
 
 # Production Cloudflare D1 Database binding
 [[d1_databases]]
-binding = "valencia_db"
-database_name = "valencia_db"
-database_id = "your-d1-database-id"
+binding = "base_db"
+database_name = "base_db"
+database_id = "f4637272-eb53-4297-bf30-b47a819e52bc"
+migrations_dir = "migrations"
 
 # Cloudflare R2 Storage Bucket binding
 [[r2_buckets]]
